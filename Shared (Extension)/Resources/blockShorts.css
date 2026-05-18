@@ -58,3 +58,125 @@ ytd-rich-item-renderer:has(a[href*="shorts"]),
 ytm-video-with-context-renderer:has(a[href*="shorts"]) {
     display: none !important;
 }
+
+
+/* 💬 HIDE ONLY THE COMMENTS AND THE HEADERS */
+
+/* 1. Target the specific comment entry points and headers */
+ytm-comments-entry-point-header-renderer,
+ytm-comment-section-renderer,
+.comment-section-header,
+#comments-entry-point,
+/* Specifically targets the 'Restricted Mode' box without killing the whole feed */
+ytm-comments-entry-point-header-renderer + ytm-item-section-renderer,
+[aria-label*="Comments"] {
+    display: none !important;
+}
+
+/* 2. Remove the "Restricted Mode" text and icon specifically */
+.engagement-panel-container:has(ytm-comment-section-renderer),
+ytm-item-section-renderer > ytm-comments-entry-point-header-renderer {
+    display: none !important;
+}
+
+/* 3. This ensures the "Up Next" / Related videos stay visible */
+ytm-item-section-renderer:has(ytm-video-with-context-renderer) {
+    display: block !important;
+}
+
+/* 4. Desktop Cleanup (Safe to keep) */
+ytd-comments,
+#comments,
+ytd-engagement-panel-section-list-renderer[target-id="comments"] {
+    display: none !important;
+}
+
+
+/* ===== FULL COMMENTS SECTION REMOVAL ===== */
+
+/* Desktop comments section */
+ytd-comments,
+#comments,
+#comments-section,
+ytd-item-section-renderer#sections[target-id="comments"],
+ytd-item-section-renderer:has(ytd-comments),
+ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-comments-section"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Mobile comments container */
+ytm-comment-section-renderer,
+ytm-item-section-renderer[section-identifier="comments"],
+ytm-comments-entry-point-header-renderer,
+ytm-comment-thread-renderer {
+    display: none !important;
+    height: 0 !important;
+}
+
+/* Comment entry box (the "Add a comment..." bar) */
+ytd-comment-simplebox-renderer,
+ytm-comment-simplebox-renderer,
+ytd-commentbox,
+#simplebox-placeholder {
+    display: none !important;
+}
+
+/* Engagement panel (YouTube sometimes uses this instead of normal comments) */
+ytd-engagement-panel-title-header-renderer,
+ytd-engagement-panel-section-list-renderer {
+    display: none !important;
+}
+
+
+/* Target the mobile preview/teaser bar and its interactive wrappers */
+ytm-item-section-renderer:has(ytm-comments-entry-point-header-renderer),
+ytm-comments-entry-point-header-renderer,
+.comments-entry-point,
+#comments-entry-point,
+ytm-comment-section-renderer,
+/* Target the new structural view models for the comment teaser */
+comments-entry-point-header-view-model,
+comments-entry-point-view-model,
+div:has(> comments-entry-point-header-view-model) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important; /* Makes it unclickable if it tries to render with 0px height */
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+/* 🚫 ABSOLUTE REMOVAL OF THE GRAY MOBILE COMMENTS TEASER BOX */
+
+/* Targets the exact gray rounded container box */
+ytm-comments-entry-point-teaser-renderer,
+.comments-entry-point-teaser-renderer,
+/* Targets the modern view-model version of the comment teaser */
+comments-entry-point-teaser-view-model,
+/* Targets the internal flex layout that holds the text inside the capsule */
+.comment-teaser-container,
+.comments-teaser-wrapper {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    pointer-events: none !important;
+}
+
+/* Fallback: If it's nested deep, completely flatten the item section containing it */
+ytm-item-section-renderer:has(ytm-comments-entry-point-teaser-renderer),
+ytm-item-section-renderer:has(comments-entry-point-teaser-view-model) {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}

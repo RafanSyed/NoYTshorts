@@ -107,7 +107,6 @@
 		D45FF15A2F7F1A0E00D08107 /* Exceptions for "Shared (Extension)" folder in "YTBlocker Extension (iOS)" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/_locales,
 				Resources/blockShorts.css,
 				Resources/content.js,
 				Resources/images,
@@ -122,7 +121,6 @@
 		D45FF15B2F7F1A0E00D08107 /* Exceptions for "Shared (Extension)" folder in "YTBlocker Extension (macOS)" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/_locales,
 				Resources/blockShorts.css,
 				Resources/content.js,
 				Resources/images,
@@ -152,7 +150,6 @@
 				D45FF15B2F7F1A0E00D08107 /* Exceptions for "Shared (Extension)" folder in "YTBlocker Extension (macOS)" target */,
 			);
 			explicitFolders = (
-				Resources/_locales,
 				Resources/images,
 			);
 			path = "Shared (Extension)";
