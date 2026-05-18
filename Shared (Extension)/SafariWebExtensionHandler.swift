@@ -10,6 +10,8 @@ import os.log
 
 class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
+    let appGroup = "group.com.rafan.YTBlocker"
+
     func beginRequest(with context: NSExtensionContext) {
         let request = context.inputItems.first as? NSExtensionItem
 
@@ -29,14 +31,35 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         os_log(.default, "Received message from browser.runtime.sendNativeMessage: %@ (profile: %@)", String(describing: message), profile?.uuidString ?? "none")
 
-        let response = NSExtensionItem()
-        if #available(iOS 15.0, macOS 11.0, *) {
-            response.userInfo = [ SFExtensionMessageKey: [ "echo": message ] ]
-        } else {
-            response.userInfo = [ "message": [ "echo": message ] ]
+        // Handle settings fetch request from background.js
+        if let dict = message as? [String: Any],
+           let action = dict["action"] as? String,
+           action == "get-settings" {
+
+            let shared = UserDefaults(suiteName: appGroup)
+            let settings: [String: Any] = shared?.dictionary(forKey: "ytbSettings") ?? [
+                "blockShorts":   false,
+                "blockSearch":   false,
+                "blockComments": false
+            ]
+
+            let response = NSExtensionItem()
+            if #available(iOS 15.0, macOS 11.0, *) {
+                response.userInfo = [SFExtensionMessageKey: settings]
+            } else {
+                response.userInfo = ["message": settings]
+            }
+            context.completeRequest(returningItems: [response], completionHandler: nil)
+            return
         }
 
-        context.completeRequest(returningItems: [ response ], completionHandler: nil)
+        // Default: echo back
+        let response = NSExtensionItem()
+        if #available(iOS 15.0, macOS 11.0, *) {
+            response.userInfo = [SFExtensionMessageKey: ["echo": message as Any]]
+        } else {
+            response.userInfo = ["message": ["echo": message as Any]]
+        }
+        context.completeRequest(returningItems: [response], completionHandler: nil)
     }
-
 }

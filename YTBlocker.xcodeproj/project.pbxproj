@@ -54,6 +54,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D40ED2D32F8326B100B7DEEF /* YTBlocker (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YTBlocker (iOS).entitlements"; sourceTree = "<group>"; };
+		D40ED2D42F8326E200B7DEEF /* YTBlocker Extension (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "YTBlocker Extension (iOS).entitlements"; sourceTree = "<group>"; };
 		D45FF0FA2F7F1A0E00D08107 /* YTBlocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTBlocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45FF10C2F7F1A0E00D08107 /* YTBlocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YTBlocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45FF1182F7F1A0E00D08107 /* YTBlocker Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "YTBlocker Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,8 +69,6 @@
 				"/Localized: Resources/Main.html",
 				Assets.xcassets,
 				Resources/Icon.png,
-				Resources/Script.js,
-				Resources/Style.css,
 				ViewController.swift,
 			);
 			target = D45FF0F92F7F1A0E00D08107 /* YTBlocker (iOS) */;
@@ -93,8 +93,6 @@
 				"/Localized: Resources/Main.html",
 				Assets.xcassets,
 				Resources/Icon.png,
-				Resources/Script.js,
-				Resources/Style.css,
 				ViewController.swift,
 			);
 			target = D45FF10B2F7F1A0E00D08107 /* YTBlocker (macOS) */;
@@ -110,7 +108,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/_locales,
-				Resources/background.js,
+				Resources/blockShorts.css,
 				Resources/content.js,
 				Resources/images,
 				Resources/manifest.json,
@@ -125,14 +123,13 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Resources/_locales,
-				Resources/background.js,
+				Resources/blockShorts.css,
 				Resources/content.js,
 				Resources/images,
 				Resources/manifest.json,
 				Resources/popup.css,
 				Resources/popup.html,
 				Resources/popup.js,
-				SafariWebExtensionHandler.swift,
 			);
 			target = D45FF1212F7F1A0E00D08107 /* YTBlocker Extension (macOS) */;
 		};
@@ -227,6 +224,8 @@
 		D45FF0DD2F7F1A0B00D08107 = {
 			isa = PBXGroup;
 			children = (
+				D40ED2D42F8326E200B7DEEF /* YTBlocker Extension (iOS).entitlements */,
+				D40ED2D32F8326B100B7DEEF /* YTBlocker (iOS).entitlements */,
 				D45FF0E22F7F1A0C00D08107 /* Shared (App) */,
 				D45FF0EB2F7F1A0E00D08107 /* Shared (Extension) */,
 				D45FF0FC2F7F1A0E00D08107 /* iOS (App) */,
@@ -468,6 +467,7 @@
 		D45FF1492F7F1A0E00D08107 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "YTBlocker Extension (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JN4QV9BKDH;
@@ -499,6 +499,7 @@
 		D45FF14A2F7F1A0E00D08107 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "YTBlocker Extension (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JN4QV9BKDH;
@@ -533,6 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "YTBlocker (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JN4QV9BKDH;
@@ -570,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "YTBlocker (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JN4QV9BKDH;
